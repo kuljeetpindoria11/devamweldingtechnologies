@@ -367,8 +367,9 @@
         /* --- SLIDER STYLES ADDED/MODIFIED --- */
 
         .product-slider {
-            width: 100%; 
-            padding-bottom: 50px; /* Space for pagination */
+            width: 100%;
+            padding-bottom: 50px;
+            /* Space for pagination */
             padding-top: 10px;
         }
 
@@ -379,7 +380,7 @@
             /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
             /* gap: 30px; */
         }
-        
+
         .product-card {
             border: 1px solid #eee;
             border-radius: 8px;
@@ -395,7 +396,7 @@
             color: var(--primary) !important;
             /* Make arrows more visible */
         }
-        
+
         .swiper-pagination-bullet-active {
             background: var(--secondary) !important;
             /* Use secondary color for active dot */
@@ -556,14 +557,15 @@
             font-size: 14px;
         }
 
-        /* Mobile Navigation Overlay */
+        /* Mobile Navigation Overlay - IMPROVED STYLES */
         .mobile-nav-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
+            /* Slightly darker overlay */
             z-index: 1050;
             display: none;
             /* Hidden by default */
@@ -572,6 +574,8 @@
             flex-direction: column;
             overflow-y: auto;
             /* Allow scrolling for long menus */
+            padding: 80px 20px;
+            /* Add vertical padding for content */
         }
 
         .mobile-nav-overlay.active {
@@ -587,53 +591,123 @@
             cursor: pointer;
         }
 
+        .mobile-nav-overlay nav {
+            width: 100%;
+            max-width: 400px;
+            /* Max width for a cleaner menu */
+        }
+
         .mobile-nav-overlay ul {
             list-style: none;
-            text-align: center;
+            text-align: left;
+            /* Align text left for better hierarchy */
             padding: 0;
         }
 
-        .mobile-nav-overlay ul li {
-            margin-bottom: 20px;
+        /* Style for the main links (Home, Products, Services, etc.) */
+        .mobile-nav-overlay nav>ul>li {
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* Separator line */
+        }
+
+        .mobile-nav-overlay nav>ul>li:last-child {
+            border-bottom: none;
         }
 
         .mobile-nav-overlay ul li a {
             color: var(--white);
-            font-size: 28px;
+            font-size: 24px;
             text-decoration: none;
-            padding: 10px 0;
-            display: block;
-            transition: color 0.3s ease;
+            padding: 15px 10px;
+            /* Increased touch target */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 600;
         }
 
         .mobile-nav-overlay ul li a:hover,
         .mobile-nav-overlay ul li a:focus {
             color: var(--secondary);
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
+        /* Styling for the first-level dropdown link (Products) */
+        .mobile-nav-overlay nav>ul>li.has-dropdown>a i {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav-overlay nav>ul>li.has-dropdown>a[aria-expanded="true"] i {
+            transform: rotate(180deg);
+        }
+
+        /* Styling for the dropdown menu container */
         .mobile-nav-overlay .dropdown-menu {
             display: none;
-            /* Changed to 'none' by default for mobile to allow toggling */
             position: static;
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.05);
+            /* Light background for nested items */
             box-shadow: none;
             min-width: unset;
-            padding-left: 20px;
-            margin-top: 10px;
+            padding-left: 0;
+            /* Remove default indentation */
+            margin-top: 0;
+            border-radius: 0;
         }
 
         .mobile-nav-overlay .dropdown-menu.show-dropdown {
             display: block;
-            /* Show when toggled by JS */
+        }
+
+        /* Styling for the second-level links (ARC MODELS, MIG MODELS) */
+        .mobile-nav-overlay .dropdown-menu li {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 0;
+        }
+
+        .mobile-nav-overlay .dropdown-menu li:first-child {
+            border-top: none;
         }
 
         .mobile-nav-overlay .dropdown-menu li a {
-            font-size: 22px;
-            padding: 8px 0;
+            font-size: 18px;
+            /* Smaller font for sub-categories */
+            padding: 10px 20px;
+            /* Indent sub-category links */
+            color: var(--secondary);
+            /* Highlight sub-categories */
         }
 
+        /* Styling for the third-level links (individual products) */
         .mobile-nav-overlay .dropdown-menu .dropdown-menu {
-            padding-left: 40px;
+            background-color: transparent;
+            /* No extra background for product list */
+            padding-left: 10px;
+            /* Slight indentation */
+        }
+
+        .mobile-nav-overlay .dropdown-menu .dropdown-menu li {
+            border-top: none;
+        }
+
+        .mobile-nav-overlay .dropdown-menu .dropdown-menu li a {
+            font-size: 16px;
+            /* Smallest font for product names */
+            padding: 8px 30px;
+            /* Clearer indentation for product names */
+            color: var(--light);
+            /* Subtle color for product names */
+            font-weight: 400;
+        }
+
+        .mobile-nav-overlay .dropdown-menu .has-dropdown>a i {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav-overlay .dropdown-menu .has-dropdown>a[aria-expanded="true"] i {
+            transform: rotate(90deg);
         }
 
 
@@ -806,14 +880,16 @@
             gap: 40px;
         }
 
-        .contact-info, .contact-form {
+        .contact-info,
+        .contact-form {
             background-color: var(--white);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .contact-info h3, .contact-form h3 {
+        .contact-info h3,
+        .contact-form h3 {
             color: var(--secondary);
             margin-bottom: 20px;
             font-size: 24px;
@@ -860,14 +936,16 @@
             color: var(--primary);
             font-size: 20px;
         }
-        
+
         @media (min-width: 992px) {
             .contact-content {
                 flex-direction: row;
             }
+
             .contact-info {
                 flex: 1;
             }
+
             .contact-form {
                 flex: 2;
             }
@@ -935,13 +1013,6 @@
                 font-size: 24px;
             }
 
-            .mobile-nav-overlay ul li a {
-                font-size: 24px;
-            }
-
-            .mobile-nav-overlay .dropdown-menu li a {
-                font-size: 18px;
-            }
 
             .product-detail-content {
                 flex-direction: column;
@@ -1218,7 +1289,7 @@
                         backup**, minimizing downtime and maximizing your productivity.</p>
                 </div>
                 <div class="about-img">
-                    <img src="https://via.placeholder.com/600x400?text=DEVAM+Team+or+Factory"
+                    <img src="assets/Devam logo.JPG"
                         alt="DEVAM Manufacturing Facility">
                 </div>
             </div>
@@ -1739,7 +1810,7 @@
             // Apply dropdown handling to both desktop and mobile navigation
             handleDropdowns(document.querySelectorAll('#main-nav .has-dropdown'));
             handleDropdowns(document.querySelectorAll('#mobileNavOverlay .has-dropdown'));
-            
+
             // --- START THE PROCESS: Load data and then attach listeners ---
             loadProductData();
         });
